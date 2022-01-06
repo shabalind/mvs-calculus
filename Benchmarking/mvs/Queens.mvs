@@ -5,38 +5,47 @@ struct State {
   var queenRows: [Int]   
 } in
 
-0
+fun getRowColumn(state: inout State, r: Int, c: Int) -> Int { 
+  iand(iand(state.freeRows[r], state.freeMaxs[c + r]), state.freeMins[c - r + 7])
+} in
 
-// func run(_ input: String) -> Bool {
-//   var state = State(
-//     freeRows: Array(repeating: true, count: 8),
-//     freeMaxs: Array(repeating: true, count: 16),
-//     freeMins: Array(repeating: true, count: 16),
-//     queenRows: Array(repeating: -1, count: 16))
-// 
-//   return placeQueen(&state, 0)
-// }
-// 
-// func placeQueen(_ state: inout State, _ c: Int) -> Bool {
-//   for r in 0..<8 {
-//     if getRowColumn(&state, r, c) {
-//       state.queenRows[r] = c
-//       setRowColumn(&state,r, c, false)
-// 
-//       if (c == 7) {
-//         return true
-//       }
-// 
-//       if (placeQueen(&state, c + 1)) {
-//         return true
-//       }
-//       setRowColumn(&state, r, c, true)
-//     }
-//   }
-// 
-//   return false
-// }
-// 
-// 
-// // true
-// print(run(""))
+fun setRowColumn(state: inout State, r: Int, c: Int, v: Int) -> Int {
+  state.freeRows[r] = v in
+  state.freeMaxs[c + r] = v in 
+  state.freeMins[c - r + 7] = v in
+  0
+} in
+
+fun placeQueen(state: inout State, c: Int) -> Int {
+  fun loop(state: inout State, c: Int, r: Int) -> Int {
+    if r < 8 ? (
+      if getRowColumn(&state, r, c) ? (
+        state.queenRows[r] = c in
+        let dummy0: Int = setRowColumn(&state, r, c, 0) in
+
+        if c == 7 ? 1 ! (
+          if placeQueen(&state, c + 1) ? 1 ! (
+            let dummy1: Int = setRowColumn(&state, r, c, 1) in
+            loop(&state, c, r + 1)
+          )
+        )
+      ) ! (
+        loop(&state, c, r + 1)
+      )
+    ) ! 0
+  } in
+
+  loop(&state, c, 0)
+} in
+
+fun run() -> Int {
+  var state = State(
+    [1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1]) in
+
+  placeQueen(&state, 0)
+} in
+
+run()
