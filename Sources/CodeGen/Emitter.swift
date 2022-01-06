@@ -49,7 +49,7 @@ public struct Emitter: ExprVisitor, PathVisitor {
   let anyInitFuncType = FunctionType([voidPtr], VoidType())
 
   /// The (lowered) type of a type-erared destructor.
-  let anyDropFuncType = FunctionType([voidPtr], VoidType())
+  let anyDropFuncType = FunctionType([voidPtr], VoidType()) 
 
   /// The (lowered) type of a type-erared copy function.
   var anyCopyFuncType = FunctionType([voidPtr, voidPtr], VoidType())
@@ -208,6 +208,14 @@ public struct Emitter: ExprVisitor, PathVisitor {
     builder.positionAtEnd(of: uptime.appendBasicBlock(named: "entry"))
     builder.buildRet(builder.buildCall(runtime.uptimeNanoseconds, args: []))
     bindings["uptime"] = uptime
+
+    var printint = builder.addFunction("_printint", type: buildFunctionType(from: [.int], to: .int))
+    printint.linkage = .private
+    printint.addAttribute(.alwaysinline, to: .function)
+    builder.positionAtEnd(of: printint.appendBasicBlock(named: "entry"))
+    _ = builder.buildCall(runtime.printI64, args: [printint.parameters[0]])
+    builder.buildRet(0)
+    bindings["printint"] = printint
 
     var sqrt = builder.addFunction("_sqrt", type: buildFunctionType(from: [.float], to: .float))
     sqrt.linkage = .private
