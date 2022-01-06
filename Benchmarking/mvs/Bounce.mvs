@@ -1,0 +1,87 @@
+struct Random {
+  var seed: Int
+} in
+
+struct Ball {
+  var x: Int
+  var y: Int
+  var xVel: Int 
+  var yVel: Int
+} in
+
+fun randomInit() -> Random {
+  Random(74755)
+} in
+
+fun randomNext(random: inout Random) -> Int {
+  let newSeed = ((random.seed * 1309) + 13849) in//& 65535 in
+  random.seed = newSeed in
+  random.seed
+} in
+
+fun randomize(ball: inout Ball, random: inout Random) -> Int {
+  ball.x = randomNext(&random) in//% 500 in
+  ball.y = randomNext(&random) in//% 500 in
+  ball.xVel = (randomNext(&random)) in//% 300) - 150 in
+  ball.yVel = (randomNext(&random)) in//% 300) - 150 in
+  0
+} in
+
+fun bounce(ball: inout Ball) -> Int {
+  let xLimit: Int = 500 in
+  let yLimit: Int = 500 in
+  var bounced: Int = 0 in
+
+  ball.x = ball.x + ball.xVel in
+  ball.y = ball.y + ball.yVel in
+  // if ball.x > xLimit {
+  //   ball.x = xLimit
+  //   ball.xVel = 0 - abs(ball.xVel) 
+  //   bounced = true
+  // }
+  // if ball.x < 0 { ball.x = 0 ball.xVel = abs(ball.xVel) 
+  //   bounced = true
+  // }
+  // if ball.y > yLimit {
+  //   ball.y = yLimit
+  //   ball.yVel = 0 - abs(ball.yVel)
+  //   bounced = true
+  // }
+  // if ball.y < 0 {
+  //   ball.y = 0
+  //   ball.yVel = abs(ball.yVel)
+  //   bounced = true
+  // }
+
+  bounced
+} in
+
+0
+
+
+// 
+
+// 
+// func run(_ ballCount: Int) -> Int {
+//   var random    = Random()
+//   var bounces   = 0
+//   let zero      = Ball(x: 0, y: 0, xVel: 0, yVel: 0)
+//   var balls     = Array(repeating: zero, count: ballCount)
+// 
+//   for j in 0..<ballCount {
+//     randomize(ball: &balls[j], by: &random)
+//   }
+// 
+//   for _ in 0..<50 {
+//     for j in 0..<ballCount {
+//       if bounce(ball: &balls[j]) {
+//         bounces += 1
+//       }
+//     }
+//   }
+// 
+//   return bounces
+// } in
+// 
+// // 1331
+// run(100)

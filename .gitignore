@@ -1,5 +1,5 @@
 # Swift Package Manager
-/.build
+.build
 /Packages
 
 # Xcode
@@ -22,3 +22,9 @@ target/
 lib_managed/
 project/boot/
 project/plugins/project/
+.bsp/
+
+# More 
+*.swp
+*.o
+*.pc
