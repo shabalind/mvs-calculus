@@ -238,6 +238,27 @@ public struct Emitter: ExprVisitor, PathVisitor {
     builder.buildRet(builder.buildAnd(iand.parameters[0], iand.parameters[1]))
     bindings["iand"] = iand
 
+    var xor = builder.addFunction("_xor", type: buildFunctionType(from: [.int, .int], to: .int))
+    xor.linkage = .private
+    xor.addAttribute(.alwaysinline, to: .function)
+    builder.positionAtEnd(of: xor.appendBasicBlock(named: "entry"))
+    builder.buildRet(builder.buildXor(xor.parameters[0], xor.parameters[1]))
+    bindings["xor"] = xor
+
+    var shl = builder.addFunction("_shl", type: buildFunctionType(from: [.int, .int], to: .int))
+    shl.linkage = .private
+    shl.addAttribute(.alwaysinline, to: .function)
+    builder.positionAtEnd(of: shl.appendBasicBlock(named: "entry"))
+    builder.buildRet(builder.buildShl(shl.parameters[0], shl.parameters[1]))
+    bindings["shl"] = shl
+
+    var itof = builder.addFunction("_itof", type: buildFunctionType(from: [.int], to: .float))
+    itof.linkage = .private
+    itof.addAttribute(.alwaysinline, to: .function)
+    builder.positionAtEnd(of: itof.appendBasicBlock(named: "entry"))
+    builder.buildRet(builder.buildIntToFP(itof.parameters[0], type: FloatType.double, signed: true))
+    bindings["itof"] = itof
+
     var iabs = builder.addFunction("_iabs", type: buildFunctionType(from: [.int], to: .int))
     iabs.linkage = .private
     iabs.addAttribute(.alwaysinline, to: .function)
