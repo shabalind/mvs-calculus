@@ -1,0 +1,78 @@
+
+
+fun run(size: Int) -> Int {
+  var sum: Int     = 0 in
+  var byteAcc: Int = 0 in
+  var bitNum: Int  = 0 in
+
+  fun loop0(sum: inout Int, byteAcc: inout Int, bitNum: inout Int, size: Int, y: Int) -> Int {
+    if y < size ? (
+      let ci: Float = (itof(2 * y) / itof(size)) - 1.0 in
+
+      fun loop1(sum: inout Int, byteAcc: inout Int, bitNum: inout Int, size: Int, y: Int, ci: Float, x: Int) -> Int {
+        if x < size ? (
+          var zr: Float   = 0.0 in
+          var zrzr: Float = 0.0 in
+          var zi: Float   = 0.0 in
+          var zizi: Float = 0.0 in
+          let cr: Float   = (itof(2 * x) / itof(size)) - 1.5 in
+
+          var notDone: Int = 1 in
+          var escape: Int  = 0 in
+
+          fun loop2(sum: inout Int, byteAcc: inout Int, bitNum: inout Int, size: Int, y: Int, ci: Float, x: Int,
+                    zr: inout Float, zi: inout Float, zrzr: inout Float, zizi: inout Float, cr: Float,
+                    notDone: inout Int, escape: inout Int, z: Int) -> Int {
+            if iand(notDone, z < 50) ? (
+              zr = zrzr - zizi + cr in
+              zi = 2.0 * zr * zi + ci in
+       
+              zrzr = zr * zr in
+              zizi = zi * zi in
+
+              let dummy: Int = if zrzr + zizi > 4.0 ? (
+                 notDone = 0 in
+                 escape = 1 in
+                 0
+              ) !0 in
+
+              loop2(&sum, &byteAcc, &bitNum, size, y, ci, x, 
+                    &zr, &zi, &zrzr, &zizi, cr, &notDone, &escape, z + 1)
+            ) ! 0 
+          } in
+          let dummy: Int = loop2(&sum, &byteAcc, &bitNum, size, y, ci, x, 
+                                 &zr, &zi, &zrzr, &zizi, cr, &notDone, &escape, 0) in
+
+          byteAcc = shl(byteAcc, 1) + escape in
+          bitNum = bitNum + 1 in
+
+          let dummy2: Int = if bitNum == 8 ? (
+            sum = xor(sum, byteAcc) in
+            byteAcc = 0 in
+            bitNum = 0 in
+            0
+          ) ! (
+            if x == size - 1 ? (
+              byteAcc = shl(byteAcc, 8 - bitNum) in
+              sum = xor(sum, byteAcc) in
+              byteAcc = 0 in
+              bitNum = 0 in
+              0
+            ) ! 0
+          ) in
+
+          loop1(&sum, &byteAcc, &bitNum, size, y, ci, x + 1)
+        ) ! 0
+      } in
+      let dummy: Int = loop1(&sum, &byteAcc, &bitNum, size, y, ci, 0) in
+
+      loop0(&sum, &byteAcc, &bitNum, size, y + 1)
+    ) ! 0
+  } in
+  let dummy: Int = loop0(&sum, &byteAcc, &bitNum, size, 0) in
+
+  sum
+} in
+
+// 191
+run(500)
