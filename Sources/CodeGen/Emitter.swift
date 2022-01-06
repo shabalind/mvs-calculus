@@ -238,6 +238,16 @@ public struct Emitter: ExprVisitor, PathVisitor {
     builder.buildRet(builder.buildAnd(iand.parameters[0], iand.parameters[1]))
     bindings["iand"] = iand
 
+    var iabs = builder.addFunction("_iabs", type: buildFunctionType(from: [.int], to: .int))
+    iabs.linkage = .private
+    iabs.addAttribute(.alwaysinline, to: .function)
+    builder.positionAtEnd(of: iabs.appendBasicBlock(named: "entry"))
+    let iabs_cond = builder.buildICmp(iabs.parameters[0], 0, .signedLessThan)
+    let iabs_then = builder.buildSub(0, iabs.parameters[0])
+    let iabs_else = iabs.parameters[0]
+    builder.buildRet(builder.buildSelect(iabs_cond, then: iabs_then, else: iabs_else))
+    bindings["iabs"] = iabs
+
     // Emit the program.
     let main  = builder.addFunction("main", type: FunctionType([], IntType.int32))
     let entry = main.appendBasicBlock(named: "entry")
