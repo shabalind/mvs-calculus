@@ -611,6 +611,9 @@ public struct TypeChecker: DeclVisitor, ExprVisitor, PathVisitor, SignVisitor {
     case "imod":
       path.type = .func(params: [.int, .int], output: .int)
 
+    case "iand":
+      path.type = .func(params: [.int, .int,], output: .int)
+
     case "printint":
       path.type = .func(params: [.int,], output: .int)
 

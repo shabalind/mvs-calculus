@@ -231,6 +231,13 @@ public struct Emitter: ExprVisitor, PathVisitor {
     builder.buildRet(builder.buildRem(imod.parameters[0], imod.parameters[1]))
     bindings["imod"] = imod
 
+    var iand = builder.addFunction("_iand", type: buildFunctionType(from: [.int, .int], to: .int))
+    iand.linkage = .private
+    iand.addAttribute(.alwaysinline, to: .function)
+    builder.positionAtEnd(of: iand.appendBasicBlock(named: "entry"))
+    builder.buildRet(builder.buildAnd(iand.parameters[0], iand.parameters[1]))
+    bindings["iand"] = iand
+
     // Emit the program.
     let main  = builder.addFunction("main", type: FunctionType([], IntType.int32))
     let entry = main.appendBasicBlock(named: "entry")
