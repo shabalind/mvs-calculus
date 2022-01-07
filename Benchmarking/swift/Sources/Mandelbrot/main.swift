@@ -1,3 +1,4 @@
+import Benchmark
 
 func run(size: Int) -> Int {
   var sum: Int     = 0
@@ -57,5 +58,4 @@ func run(size: Int) -> Int {
   return sum
 }
 
-// 191
-print(500)
+benchmark(CommandLine.arguments, run)

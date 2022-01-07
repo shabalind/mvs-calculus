@@ -1,4 +1,5 @@
 import Random
+import Benchmark
 
 struct Ball {
   var x: Int
@@ -66,5 +67,4 @@ func run(ballCount: Int) -> Int {
   return bounces
 }
 
-// 1331
-print(100)
+benchmark(CommandLine.arguments, run)

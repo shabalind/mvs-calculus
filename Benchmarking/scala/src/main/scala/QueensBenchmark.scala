@@ -26,18 +26,18 @@ import scala.Predef.intWrapper
 import scala.{Int, Boolean, Array, Unit}
 import java.lang.String
 
-object QueensBenchmark extends communitybench.Benchmark {
+object QueensBenchmark {
   var freeMaxs: Array[Boolean] = _
   var freeRows: Array[Boolean] = _
   var freeMins: Array[Boolean] = _
   var queenRows: Array[Int]    = _
 
-  def run(input: String): Boolean = {
+  def run(n: Int): Int = {
     freeRows = Array.fill(8)(true)
     freeMaxs = Array.fill(16)(true)
     freeMins = Array.fill(16)(true)
     queenRows = Array.fill(8)(-1)
-    placeQueen(0)
+    if (placeQueen(0)) 1 else 0
   }
 
   def placeQueen(c: Int): Boolean = {
@@ -68,6 +68,6 @@ object QueensBenchmark extends communitybench.Benchmark {
     freeMins(c - r + 7) = v
   }
 
-  override def main(args: Array[String]): Unit =
-    super.main(args)
+  def main(args: Array[String]): Unit =
+    benchmark.Benchmark(args)(run) 
 }

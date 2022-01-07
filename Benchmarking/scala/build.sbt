@@ -6,4 +6,5 @@ nativeConfig ~= {
   _.withGC(build.GC.immix)
     .withMode(build.Mode.releaseFull)
     .withLTO(build.LTO.thin)
+    .withLinkingOptions(Seq("-fuse-ld=lld"))
 }

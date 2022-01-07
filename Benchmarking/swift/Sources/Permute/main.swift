@@ -1,8 +1,8 @@
-func run(_ input: String) -> Int {
-  let n = Int(input)!
-  let zero: Int = 0
+import Benchmark
+
+func run(_ n: Int) -> Int {
+  var arr: [Int] = Array(repeating: 0, count: n)
   var count: Int = 0
-  var arr: [Int] = Array(repeating: zero, count: n)
   permute(&count, &arr, n)
   return count
 }
@@ -28,5 +28,4 @@ func swap(_ arr: inout [Int], _ i: Int, _ j: Int) {
   arr[j] = tmp
 }
 
-// 8660
-print(run("6"))
+benchmark(CommandLine.arguments, run)

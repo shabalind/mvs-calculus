@@ -1,3 +1,5 @@
+import Benchmark
+
 struct State {
   var freeRows: [Bool]
   var freeMaxs: [Bool]
@@ -5,14 +7,14 @@ struct State {
   var queenRows: [Int]   
 }
 
-func run(_ input: String) -> Bool {
+func run(_ n: Int) -> Int {
   var state = State(
     freeRows: Array(repeating: true, count: 8),
     freeMaxs: Array(repeating: true, count: 16),
     freeMins: Array(repeating: true, count: 16),
     queenRows: Array(repeating: -1, count: 16))
 
-  return placeQueen(&state, 0)
+  return placeQueen(&state, 0) ? 1 : 0
 }
 
 func placeQueen(_ state: inout State, _ c: Int) -> Bool {
@@ -45,5 +47,4 @@ func setRowColumn(_ state: inout State, _ r: Int, _ c: Int, _ v: Bool) {
   state.freeMins[c - r + 7] = v
 }
 
-// true
-print(run(""))
+benchmark(CommandLine.arguments, run)

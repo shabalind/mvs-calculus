@@ -16,21 +16,24 @@ let package = Package(
     targets: [
         .target(
             name: "Bounce",
-            dependencies: ["Random"]),
+            dependencies: ["Benchmark", "Random"]),
         .target(
             name: "Mandelbrot",
-            dependencies: []),
+            dependencies: ["Benchmark"]),
         .target(
             name: "Nbody",
-            dependencies: []),
+            dependencies: ["Benchmark"]),
         .target(
             name: "Permute",
-            dependencies: []),
+            dependencies: ["Benchmark"]),
         .target(
             name: "Queens",
-            dependencies: []),
+            dependencies: ["Benchmark"]),
         .target(
             name: "Random",
+            dependencies: ["Benchmark"]),
+        .target(
+            name: "Benchmark",
             dependencies: []),
     ]
 )

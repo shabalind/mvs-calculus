@@ -1,16 +1,16 @@
 package permute
 
+object PermuteBenchmark {
+  var count = 0
 
-object PermuteBenchmark extends communitybench.Benchmark {
-
-  def run(input: String): Int = {
-    val arr = new Array[Int](6)
-    val n = input.toInt
-    return permute(arr, n)
+  def run(n: Int): Int = {
+    val arr = new Array[Int](n)
+    count = 0
+    permute(arr, n)
+    return count
   }
 
-  def permute(arr: Array[Int], n: Int): Int = {
-    var count = 0
+  def permute(arr: Array[Int], n: Int): Unit = {
     count += 1
     if (n != 0) {
       val n1 = n - 1
@@ -23,7 +23,6 @@ object PermuteBenchmark extends communitybench.Benchmark {
         i -= 1
       }
     }
-    count
   }
 
   def swap(arr: Array[Int], i: Int, j: Int) {
@@ -31,4 +30,7 @@ object PermuteBenchmark extends communitybench.Benchmark {
     arr(i) = arr(j)
     arr(i) = tmp
   }
+
+  def main(args: Array[String]): Unit =
+    benchmark.Benchmark(args)(run) 
 }

@@ -1,6 +1,4 @@
-package som
-
-import scala.{Int, Unit}
+package random
 
 class Random {
   private var seed = 74755

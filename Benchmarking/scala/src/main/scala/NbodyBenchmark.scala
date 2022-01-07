@@ -9,10 +9,9 @@ import scala.{Double, Boolean}
 import java.lang.String
 import scala.Predef.augmentString
 
-object NbodyBenchmark extends communitybench.Benchmark {
-  def run(input: String): Boolean = {
+object NbodyBenchmark { 
+  def run(n: Int): Int = {
     val system = new NBodySystem()
-    val n      = input.toInt
 
     var i = 0
     while (i < n) {
@@ -20,9 +19,9 @@ object NbodyBenchmark extends communitybench.Benchmark {
       i += 1
     }
 
-    system.energy() == -0.1690859889909308
+    (system.energy() * 100000).toInt
   }
 
-  override def main(args: Array[String]): Unit =
-    super.main(args)
+  def main(args: Array[String]): Unit =
+    benchmark.Benchmark(args)(run) 
 }
