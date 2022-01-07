@@ -38,7 +38,7 @@ fun placeQueen(state: inout State, c: Int) -> Int {
   loop(&state, c, 0)
 } in
 
-fun run() -> Int {
+fun run(n: Int) -> Int {
   var state = State(
     [1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -48,4 +48,4 @@ fun run() -> Int {
   placeQueen(&state, 0)
 } in
 
-run()
+run(0)

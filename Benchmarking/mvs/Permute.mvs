@@ -23,12 +23,12 @@ fun permute(count: inout Int, arr: inout [Int], n: Int) -> Int {
   ) ! 0
 } in
 
-fun run() -> Int {
-  let n: Int = 6 in
+fun run(n: Int) -> Int {
+  let dummy0: Int = assert(n == 6) in
   var arr: [Int] = [0, 0, 0, 0, 0, 0] in
   var count: Int = 0 in
   let dummy: Int = permute(&count, &arr, n) in
   count
 } in
 
-run()
+run(6)

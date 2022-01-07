@@ -66,8 +66,8 @@ fun bounce(ball: inout Ball) -> Int {
   bounced
 } in
 
-fun run() -> Int {
-  let ballCount: Int = 100 in
+fun run(ballCount: Int) -> Int {
+  let dummy: Int = assert(ballCount == 100) in
   var random: Random = randomInit() in
   var bounces: Int = 0 in
   var balls: [Ball] = [
@@ -193,4 +193,4 @@ fun run() -> Int {
 } in
 
 // 1331
-run()
+run(100)
