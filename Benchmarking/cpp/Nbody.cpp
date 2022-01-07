@@ -1,6 +1,7 @@
 #include <vector>
 #include <cstdio>
 #include <cmath>
+#include "Benchmark.h"
 
 struct Vec3 {
   public:
@@ -134,10 +135,4 @@ int run(int iterations) {
   }
 
   return (int) (energy(bodies, planetCount) * 100000);
-}
-
-int main() {
-  // -16908
-  printf("%d", run(250000));
-  return 0;
 }

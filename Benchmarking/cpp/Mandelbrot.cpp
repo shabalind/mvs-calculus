@@ -1,4 +1,5 @@
 #include <cstdio>
+#include "Benchmark.h"
 
 int run(int size) {
   int sum     = 0;
@@ -57,10 +58,4 @@ int run(int size) {
   }
 
   return sum;
-}
-
-int main() {
-  // 191
-  printf("%d", run(500));
-  return 0;
 }

@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <vector>
+#include "Benchmark.h"
 
 void swap(std::vector<int> &arr, int i, int j) {
   int tmp = arr[i];
@@ -27,10 +28,4 @@ int run(int n) {
   std::vector<int> arr(n, 0);
   permute(count, arr, n);
   return count;
-}
-
-int main() {
-  // 8660
-  printf("%d", run(6));
-  return 0;
 }

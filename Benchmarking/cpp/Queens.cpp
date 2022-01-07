@@ -1,5 +1,6 @@
 #include <vector>
 #include <cstdio>
+#include "Benchmark.h"
 
 struct State {
   public:
@@ -43,13 +44,7 @@ bool placeQueen(State &state, int c) {
   return false;
 }
 
-bool run() {
+int run(int n) {
   State state;
-  return placeQueen(state, 0);
-}
-
-int main() {
-  // 1
-  printf("%d", run());
-  return 0;
+  return placeQueen(state, 0) ? 1 : 0;
 }

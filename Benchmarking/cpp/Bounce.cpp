@@ -1,4 +1,5 @@
 #include "Random.h"
+#include "Benchmark.h"
 #include <cmath>
 #include <cstdio>
 #include <vector>
@@ -68,10 +69,4 @@ int run(int ballCount) {
   }
 
   return bounces;
-}
-
-int main() {
-  // 1331
-  printf("%d", run(100));
-  return 0;
 }
