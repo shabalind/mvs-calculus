@@ -45,8 +45,7 @@ func bounce(ball: inout Ball) -> Bool {
   return bounced
 }
 
-func run(_ input: String) -> Int {
-  let ballCount = Int(input)!
+func run(ballCount: Int) -> Int {
   var random    = Random()
   var bounces   = 0
   let zero      = Ball(x: 0, y: 0, xVel: 0, yVel: 0)
@@ -68,4 +67,4 @@ func run(_ input: String) -> Int {
 }
 
 // 1331
-print(run("100"))
+print(100)

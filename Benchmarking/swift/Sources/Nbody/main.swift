@@ -79,7 +79,7 @@ func energy(_ bodies: [Body], _ n: Int) -> Double {
   return e
 }
 
-func run(_ input: String) -> Double {
+func run(_ iterations: Int) -> Int {
   let pi          = 3.1415926535897931
   let planetCount = 5
   let solarMass   = 4.0 * pi * pi
@@ -133,21 +133,17 @@ func run(_ input: String) -> Double {
     p.z = p.z + bodies[i].v.z * bodies[i].m
   }
 
-
   bodies[0].v = Vec3(
     0.0 - p.x / solarMass,
     0.0 - p.y / solarMass,
     0.0 - p.z / solarMass)
 
-
-  let iterations = Int(input)!
-
   for _ in 0..<iterations { 
     advance(&bodies, planetCount, 0.01)
   }
 
-  return energy(bodies, planetCount)
+  return Int(energy(bodies, planetCount) * 100000)
 }
 
-// -0.1690859889909308
-print(run("250000"))
+// -16908
+print(run(250000))

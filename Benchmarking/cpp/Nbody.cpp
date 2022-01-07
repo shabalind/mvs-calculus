@@ -70,7 +70,7 @@ double energy(std::vector<Body> &bodies, int n) {
   return e;
 }
 
-double run(int iterations) { 
+int run(int iterations) { 
   double pi          = 3.1415926535897931;
   int planetCount    = 5;
   double solarMass   = 4.0 * pi * pi;
@@ -133,11 +133,11 @@ double run(int iterations) {
     advance(bodies, planetCount, 0.01);
   }
 
-  return energy(bodies, planetCount);
+  return (int) (energy(bodies, planetCount) * 100000);
 }
 
 int main() {
-  // -0.1690859889909308
-  printf("%f", run(250000));
+  // -16908
+  printf("%d", run(250000));
   return 0;
 }

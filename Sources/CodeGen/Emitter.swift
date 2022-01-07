@@ -259,6 +259,13 @@ public struct Emitter: ExprVisitor, PathVisitor {
     builder.buildRet(builder.buildIntToFP(itof.parameters[0], type: FloatType.double, signed: true))
     bindings["itof"] = itof
 
+    var ftoi = builder.addFunction("_ftoi", type: buildFunctionType(from: [.float], to: .int))
+    ftoi.linkage = .private
+    ftoi.addAttribute(.alwaysinline, to: .function)
+    builder.positionAtEnd(of: ftoi.appendBasicBlock(named: "entry"))
+    builder.buildRet(builder.buildFPToInt(ftoi.parameters[0], type: IntType.int64, signed: true))
+    bindings["ftoi"] = ftoi
+
     var iabs = builder.addFunction("_iabs", type: buildFunctionType(from: [.int], to: .int))
     iabs.linkage = .private
     iabs.addAttribute(.alwaysinline, to: .function)

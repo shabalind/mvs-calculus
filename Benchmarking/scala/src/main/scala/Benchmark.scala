@@ -6,7 +6,7 @@ import scala.Predef.assert
 import scala.Predef.augmentString
 
 abstract class Benchmark {
-  def run(input: String): Any
+  def run(input: Int): Any
 
   def main(args: Array[String]): Unit = {
     assert(

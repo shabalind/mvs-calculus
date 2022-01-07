@@ -626,6 +626,9 @@ public struct TypeChecker: DeclVisitor, ExprVisitor, PathVisitor, SignVisitor {
     case "itof":
       path.type = .func(params: [.int,], output: .float)
 
+    case "ftoi":
+      path.type = .func(params: [.float,], output: .int)
+
     case "printint":
       path.type = .func(params: [.int,], output: .int)
 

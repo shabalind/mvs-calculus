@@ -166,4 +166,5 @@ fun loop(bodies: inout [Body], planetCount: Int, i: Int, n: Int) -> Int {
   )
 } in
 _ = loop(&bodies, planetCount, 0, 50000000) in
-energy(bodies, planetCount)
+
+ftoi(energy(bodies, planetCount) * 100000.0)

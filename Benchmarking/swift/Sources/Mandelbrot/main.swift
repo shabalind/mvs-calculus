@@ -1,6 +1,5 @@
 
-func run(_ input: String) -> Int {
-  let size         = Int(input)!
+func run(size: Int) -> Int {
   var sum: Int     = 0
   var byteAcc: Int = 0
   var bitNum: Int  = 0
@@ -59,4 +58,4 @@ func run(_ input: String) -> Int {
 }
 
 // 191
-print(run("500"))
+print(500)
