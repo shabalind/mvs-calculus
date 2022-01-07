@@ -200,12 +200,47 @@ struct Runtime {
       return fn
     }
 
-    let ty = FunctionType([], FloatType.double)
+    let ty = FunctionType([], IntType.int64)
     let fn = emitter.builder.addFunction("mvs_uptime_nanoseconds", type: ty)
     fn.addAttribute(.nounwind , to: .function)
     return fn
   }
 
+  /// The runtime's `assert` function.
+  var assert: Function {
+    if let fn = emitter.module.function(named: "mvs_assert_i64") {
+      return fn
+    }
+
+    let ty = FunctionType([IntType.int64], IntType.int64)
+    let fn = emitter.builder.addFunction("mvs_assert_i64", type: ty)
+    fn.addAttribute(.nounwind , to: .function)
+    return fn
+  }
+
+  /// The runtime's `iarg` function.
+  var iarg: Function {
+    if let fn = emitter.module.function(named: "mvs_iarg") {
+      return fn
+    }
+
+    let ty = FunctionType([IntType.int64], IntType.int64)
+    let fn = emitter.builder.addFunction("mvs_iarg", type: ty)
+    fn.addAttribute(.nounwind , to: .function)
+    return fn
+  }
+
+  /// The runtime's `init` function.
+  var init_: Function {
+    if let fn = emitter.module.function(named: "mvs_init") {
+      return fn
+    }
+
+    let ty = FunctionType([IntType.int32, IntType.int32.ptr], IntType.int64)
+    let fn = emitter.builder.addFunction("mvs_init", type: ty)
+    fn.addAttribute(.nounwind , to: .function)
+    return fn
+  }
 }
 
 extension Emitter {

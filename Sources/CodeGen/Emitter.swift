@@ -202,7 +202,7 @@ public struct Emitter: ExprVisitor, PathVisitor {
     }
 
     // Expose built-in functions.
-    var uptime = builder.addFunction("_uptime", type: buildFunctionType(from: [], to: .float))
+    var uptime = builder.addFunction("_uptime", type: buildFunctionType(from: [], to: .int))
     uptime.linkage = .private
     uptime.addAttribute(.alwaysinline, to: .function)
     builder.positionAtEnd(of: uptime.appendBasicBlock(named: "entry"))
@@ -216,6 +216,14 @@ public struct Emitter: ExprVisitor, PathVisitor {
     _ = builder.buildCall(runtime.printI64, args: [printint.parameters[0]])
     builder.buildRet(0)
     bindings["printint"] = printint
+
+    var printfloat = builder.addFunction("_printfloat", type: buildFunctionType(from: [.float], to: .int))
+    printfloat.linkage = .private
+    printfloat.addAttribute(.alwaysinline, to: .function)
+    builder.positionAtEnd(of: printfloat.appendBasicBlock(named: "entry"))
+    _ = builder.buildCall(runtime.printF64, args: [printfloat.parameters[0]])
+    builder.buildRet(0)
+    bindings["printfloat"] = printfloat
 
     var sqrt = builder.addFunction("_sqrt", type: buildFunctionType(from: [.float], to: .float))
     sqrt.linkage = .private
@@ -276,10 +284,25 @@ public struct Emitter: ExprVisitor, PathVisitor {
     builder.buildRet(builder.buildSelect(iabs_cond, then: iabs_then, else: iabs_else))
     bindings["iabs"] = iabs
 
+    var assert = builder.addFunction("_assert", type: buildFunctionType(from: [.int], to: .int))
+    assert.linkage = .private
+    assert.addAttribute(.alwaysinline, to: .function)
+    builder.positionAtEnd(of: assert.appendBasicBlock(named: "entry"))
+    builder.buildRet(builder.buildCall(runtime.assert, args: [assert.parameters[0]]))
+    bindings["assert"] = assert
+
+    var iarg = builder.addFunction("_iarg", type: buildFunctionType(from: [.int], to: .int))
+    iarg.linkage = .private
+    iarg.addAttribute(.alwaysinline, to: .function)
+    builder.positionAtEnd(of: iarg.appendBasicBlock(named: "entry"))
+    builder.buildRet(builder.buildCall(runtime.iarg, args: [iarg.parameters[0]]))
+    bindings["iarg"] = iarg
+
     // Emit the program.
-    let main  = builder.addFunction("main", type: FunctionType([], IntType.int32))
+    let main  = builder.addFunction("main", type: FunctionType([IntType.int32, IntType.int32.ptr], IntType.int32))
     let entry = main.appendBasicBlock(named: "entry")
     builder.positionAtEnd(of: entry)
+    builder.buildCall(runtime.init_, args: [main.parameters[0], main.parameters[1]]) 
 
     let programType = program.entry.type!
     let programIRType = lower(programType)

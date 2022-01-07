@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <stdlib.h>
 
 #ifdef DEBUG
 #define mvs_assert(c) (assert(c))
@@ -398,10 +399,12 @@ double mvs_sqrt(double x) {
 }
 
 /// Returns the number of nanoseconds since boot, excluding any time the system spent asleep.
-double mvs_uptime_nanoseconds() {
-  auto clock = std::chrono::high_resolution_clock::now();
-  auto delta = std::chrono::duration_cast<std::chrono::nanoseconds>(clock.time_since_epoch());
-  return delta.count();
+int64_t mvs_uptime_nanoseconds() {
+  auto now = std::chrono::high_resolution_clock::now();
+  auto duration = now.time_since_epoch();
+  auto nanoseconds =
+      std::chrono::duration_cast<std::chrono::nanoseconds>(duration);
+  return nanoseconds.count();
 }
 
 void mvs_print_i64(int64_t value) {
@@ -410,6 +413,28 @@ void mvs_print_i64(int64_t value) {
 
 void mvs_print_f64(double value) {
   printf("%f\n", value);
+}
+
+int64_t mvs_assert_i64(int64_t value) {
+  printf("asserting %d\n", value);
+  if (!value) {
+    printf("assert failed\n");
+    exit(1);
+  }
+  return 0;
+}
+
+int _mvs_saved_argc;
+char** _mvs_saved_argv;
+
+int32_t mvs_init(int argc, char *argv[]) {
+  _mvs_saved_argc = argc;
+  _mvs_saved_argv = argv;
+  return 0;
+}
+
+int64_t mvs_iarg(int64_t n) {
+  return atoi(_mvs_saved_argv[n]); 
 }
 
 }

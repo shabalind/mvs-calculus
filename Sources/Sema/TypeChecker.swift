@@ -603,7 +603,7 @@ public struct TypeChecker: DeclVisitor, ExprVisitor, PathVisitor, SignVisitor {
     path.mutability = .let
     switch path.name {
     case "uptime":
-      path.type = .func(params: [], output: .float)
+      path.type = .func(params: [], output: .int)
 
     case "sqrt":
       path.type = .func(params: [.float], output: .float)
@@ -630,6 +630,15 @@ public struct TypeChecker: DeclVisitor, ExprVisitor, PathVisitor, SignVisitor {
       path.type = .func(params: [.float,], output: .int)
 
     case "printint":
+      path.type = .func(params: [.int,], output: .int)
+
+    case "printfloat":
+      path.type = .func(params: [.float,], output: .int)
+
+    case "iarg":
+      path.type = .func(params: [.int,], output: .int)
+      
+    case "assert":
       path.type = .func(params: [.int,], output: .int)
 
     default:
