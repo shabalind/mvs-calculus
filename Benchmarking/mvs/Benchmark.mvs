@@ -1,3 +1,5 @@
+fun run(n: Int) -> Int { n } in
+
 fun noinline_verify(results: [Int], count: Int, expected: Int) -> Int {
   fun loop(results: [Int], count: Int, expected: Int, i: Int) -> Int {
     if i < count ? (
@@ -17,8 +19,6 @@ fun noinline_dump(times: [Int], count: Int) -> Int {
   } in
   loop(times, count, 0)
 } in 
-
-fun run(n: Int) -> Int { n } in
 
 fun main(run: (Int) -> Int) -> Int {
   let measurements: Int = iarg(1) in 

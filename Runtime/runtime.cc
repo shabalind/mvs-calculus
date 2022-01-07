@@ -416,7 +416,6 @@ void mvs_print_f64(double value) {
 }
 
 int64_t mvs_assert_i64(int64_t value) {
-  printf("asserting %d\n", value);
   if (!value) {
     printf("assert failed\n");
     exit(1);
