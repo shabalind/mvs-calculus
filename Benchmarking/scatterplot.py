@@ -65,7 +65,7 @@ def make_scatter(ratio):
 
 
 def make_line(ratio, bucket_count, min_x, max_x):
-  plt.figure() 
+  plt.figure()
 
   buckets = range(0, bucket_count)
   d_x = max_x - min_x
@@ -101,6 +101,6 @@ def make_line(ratio, bucket_count, min_x, max_x):
 make_scatter(f'read_ratio')
 make_scatter(f'write_ratio')
 make_scatter(f'read_write_ratio')
-make_line(f'read_ratio', 20, 0.0, 0.8)
-make_line(f'write_ratio', 20, 0.1, 0.8)
-make_line(f'read_write_ratio', 20, 0.1, 1.0)
+make_line(f'read_ratio', 20, 0.2, 0.9)
+make_line(f'write_ratio', 20, 0.2, 0.9)
+make_line(f'read_write_ratio', 20, 0.2, 0.9)
