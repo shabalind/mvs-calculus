@@ -51,14 +51,7 @@ def bench_mvs(prefix, process_kwargs):
   print('## mvs')
   subp.run(
     [
-      '.build/release/mvs', f'{SRC_DIR}/{prefix}.mvs', '-O',
-     '-o', f'{OUT_DIR}/{prefix}.mvs.o'
-    ],
-    **process_kwargs)
-  subp.run(
-    [
-      'clang++', '-std=c++14', f'{OUT_DIR}/{prefix}.mvs.o', 'Runtime/runtime.cc',
-      '-O2', '-o', f'{OUT_DIR}/{prefix}.mvs.out'
+      './mvs-compile.sh', f'{SRC_DIR}/{prefix}.mvs'
     ],
     **process_kwargs)
   return collect_runs_p50(f'./{OUT_DIR}/{prefix}.mvs.out')
@@ -140,6 +133,7 @@ def main(verbose=False):
         with open(f'{SRC_DIR}/{prefix}.fail', 'w') as ffail:
           ffail.write("1")
         print(f'Benchmark {prefix} failed: {e}\n')
+        raise ValueError("fail")
 
 
 if __name__ == '__main__':
