@@ -133,7 +133,6 @@ def main(verbose=False):
         with open(f'{SRC_DIR}/{prefix}.fail', 'w') as ffail:
           ffail.write("1")
         print(f'Benchmark {prefix} failed: {e}\n')
-        raise ValueError("fail")
 
 
 if __name__ == '__main__':
