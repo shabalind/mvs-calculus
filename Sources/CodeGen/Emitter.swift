@@ -966,7 +966,7 @@ public struct Emitter: ExprVisitor, PathVisitor {
     let type = buildFunctionType(from: params, to: output)
     var function = builder.addFunction("_" + funcName, type: type)
     function.linkage = .private
-    if !inlinable {
+    if !inlinable || funcName.starts(with: "noinline") {
       function.addAttribute(.noinline, to: .function)
     }
 
