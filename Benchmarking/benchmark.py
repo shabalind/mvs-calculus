@@ -42,7 +42,7 @@ def bench_cpp(prefix, process_kwargs):
   print('## cpp')
   process_kwargs['timeout'] = 300
   subp.run(
-    ['clang++', '-std=c++14', '-O2', f'{SRC_DIR}/{prefix}.cpp', '-o', f'{OUT_DIR}/{prefix}.cpp.out'],
+    ['clang++', '-std=c++14', '-O3', f'{SRC_DIR}/{prefix}.cpp', '-o', f'{OUT_DIR}/{prefix}.cpp.out'],
     **process_kwargs)
   return collect_runs_p50(f'./{OUT_DIR}/{prefix}.cpp.out')
 
@@ -51,7 +51,7 @@ def bench_mvs(prefix, process_kwargs):
   print('## mvs')
   subp.run(
     [
-      './mvs-compile.sh', f'{SRC_DIR}/{prefix}.mvs'
+      './mvs-compile.sh', f'{SRC_DIR}/{prefix}.mvs', f'./{OUT_DIR}/{prefix}.mvs.out'
     ],
     **process_kwargs)
   return collect_runs_p50(f'./{OUT_DIR}/{prefix}.mvs.out')
