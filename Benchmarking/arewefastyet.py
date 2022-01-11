@@ -16,7 +16,7 @@ for bench in benchmarks:
     for file in glob.glob(f"Benchmarking/{lang}/results/{bench}.*"):
       with open(file) as f:
         bench_samples.extend(map(int, f.readlines()))
-    samples[bench][lang] = np.array(bench_samples, dtype=float)
+    samples[bench][lang] = np.array(bench_samples, dtype=float)[-100:]
 
 normalized_samples = defaultdict(lambda: defaultdict(lambda: dict))
 
@@ -42,7 +42,7 @@ for i, lang in enumerate(languages):
 ax.set_xticks(x, labels=benchmarks)
 ax.legend()
 ax.set_yscale('log')
-ax.set_ylim([0, 13])
+ax.set_ylim([0.1, 25])
 
 for rect in rects:
   ax.bar_label(rect, padding=3, rotation=90, fmt="%0.2f x", color='gray')
