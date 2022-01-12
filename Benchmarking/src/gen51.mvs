@@ -1,0 +1,138 @@
+  struct s0 {
+    var p0: [[Float]]
+    var p1: [[Float]]
+  } in
+  struct s1 {
+    var p0: s0
+    var p1: s0
+  } in
+  let f110: (s0) -> s0 = (v0: s0) -> s0 {
+    var v7: s0 = v0 in
+    var v3: s0 = v7 in
+    var v4: s0 = v0 in
+    var v1: s0 = v3 in
+    var v6: s0 = v0 in
+    let v2: [[Float]] = v0.p1 in
+    let v16: [[Float]] = v0.p1 in
+    let v10: [[Float]] = v6.p0 in
+    var v14: s0 = v1 in
+    let v12: s1 = s1(v1, v4) in
+    let v21: [[[Float]]] = [v10, v10, v10, v10, v10] in
+    let v43: [[Float]] = v21[4] in
+    let v18: [[[Float]]] = [v2, v2, v2, v2, v16, v16, v16] in
+    let v26: [[Float]] = v18[3] in
+    let v52: [[Float]] = v21[2] in
+    v1.p0 = v10 in
+    var v51: s1 = v12 in
+    var v29: s1 = v51 in
+    v6.p0 = v43 in
+    v1.p0 = v52 in
+    v51.p1 = v14 in
+    v29.p0 = v0 in
+    let v85: s0 = v29.p1 in
+    v4.p1 = v26 in
+    v85
+  } in
+  let f87: (s1) -> s1 = (v0: s1) -> s1 {
+    var v5: s1 = v0 in
+    var v7: s1 = v5 in
+    let v4: s0 = v7.p1 in
+    let v1: [s1] = [v5, v5] in
+    let v9: s1 = v1[0] in
+    v5.p0 = v4 in
+    v9
+  } in
+  let f60: (s0) -> s0 = (v0: s0) -> s0 {
+    var v7: s0 = v0 in
+    let v6: s0 = f110(v0) in
+    let v3: [[Float]] = v7.p0 in
+    let v4: [[Float]] = v6.p1 in
+    let v1: s0 = f110(v7) in
+    let v5: s0 = f110(v1) in
+    v7 = v6 in
+    let v10: s0 = f110(v7) in
+    let v13: [[Float]] = v5.p0 in
+    var v9: [[Float]] = v4 in
+    let v12: s0 = f110(v10) in
+    let v11: s0 = f110(v1) in
+    var v18: [[Float]] = v4 in
+    let v22: [Float] = v18[0] in
+    v7.p1 = v18 in
+    let v14: s0 = f110(v7) in
+    v7.p0 = v3 in
+    var v16: [Float] = v22 in
+    v9 = v4 in
+    v9[0] = v16 in
+    let v20: [[Float]] = v10.p1 in
+    let v21: s0 = f110(v0) in
+    let v30: [Float] = v9[0] in
+    let v23: [[Float]] = v14.p1 in
+    let v71: s0 = f110(v21) in
+    var v54: [[Float]] = v13 in
+    let v63: [Float] = v23[0] in
+    v7 = v10 in
+    v7.p1 = v18 in
+    v18[0] = v22 in
+    v18[0] = v30 in
+    let v33: s0 = f110(v10) in
+    v18[0] = v63 in
+    let v50: s1 = s1(v12, v71) in
+    v7.p0 = v54 in
+    var v94: s1 = v50 in
+    let v78: s0 = v94.p0 in
+    let v74: s1 = f87(v94) in
+    v94.p0 = v1 in
+    let v103: s0 = v50.p1 in
+    let v81: s0 = v74.p1 in
+    let v56: [[Float]] = v78.p0 in
+    v94.p0 = v33 in
+    v94.p1 = v103 in
+    v94.p0 = v11 in
+    v7.p0 = v56 in
+    var v180: s0 = v81 in
+    v180.p1 = v20 in
+    v180
+  } in
+  let noinline_f0: ([[s0]], Float) -> Float = (v0: [[s0]], v1: Float) -> Float {
+    let v7: [s0] = v0[1] in
+    let v5: s0 = v7[0] in
+    let v4: s0 = v7[0] in
+    let v11: s0 = v7[0] in
+    let v10: s0 = f110(v5) in
+    let v15: [[Float]] = v11.p0 in
+    var v30: [[Float]] = v15 in
+    let v51: [[Float]] = v11.p1 in
+    let v31: s0 = f60(v4) in
+    let v32: [[Float]] = v10.p0 in
+    let v60: [Float] = v32[1] in
+    v30[0] = v60 in
+    let v36: [Float] = v51[0] in
+    var v63: [Float] = v36 in
+    let v62: Float = v60[0] in
+    let v87: Float = v63[0] in
+    let v252: [Float] = v30[0] in
+    let v75: [[Float]] = v31.p1 in
+    var v72: [Float] = v252 in
+    let v228: Float = v87 + v62 in
+    let v145: [Float] = v75[0] in
+    let v83: Float = v72[0] in
+    v63[0] = v83 in
+    v30[0] = v145 in
+    v228
+  } in
+  fun loop(i: Int, v0: [[s0]], v1: Float, result: Float) -> Float {
+    if i >= 1000 ? result ! (
+      let newResult: Float = noinline_f0(v0, v1) in
+      loop(i + 1, v0, v1, newResult)
+    )
+  } in
+  let main: () -> Float = () -> Float {
+    let v0: [[s0]] = [[s0([[0.0], [1.0]], [[2.0]])], [s0([[3.0], [4.0]], [[5.0]])]] in
+    let v1: Float = 6.0 in
+    let initialResult: Float = 6.0 in
+    let start: Float = uptime() in
+    let result: Float = loop(0, v0, v1, initialResult) in
+    let end: Float = uptime() in
+    end - start
+  } in
+main()

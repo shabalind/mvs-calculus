@@ -1,0 +1,54 @@
+  struct s0 {
+    var p0: [[Float]]
+    var p1: [[Float]]
+  } in
+  struct s1 {
+    var p0: s0
+    var p1: s0
+  } in
+  struct s2 {
+    var p0: s1
+    var p1: s0
+  } in
+  struct s3 {
+    var p0: [[s2]]
+    var p1: s1
+  } in
+  struct s9 {
+    var p0: s3
+    var p1: s0
+  } in
+  let noinline_f0: (s9, [s1], [s0], Float) -> Float = (v0: s9, v1: [s1], v2: [s0], v3: Float) -> Float {
+    let v8: s3 = v0.p0 in
+    let v7: [[s2]] = v8.p0 in
+    let v4: [s2] = v7[0] in
+    var v13: [s2] = v4 in
+    let v16: [[s2]] = v8.p0 in
+    let v26: [s2] = v16[1] in
+    let v31: s2 = v13[0] in
+    let v25: s0 = v31.p1 in
+    v13 = v26 in
+    let v50: [[Float]] = v25.p0 in
+    let v83: [Float] = v50[0] in
+    let v73: Float = v83[0] in
+    let v108: Float = v73 / v73 in
+    v108
+  } in
+  fun loop(i: Int, v0: s9, v1: [s1], v2: [s0], v3: Float, result: Float) -> Float {
+    if i >= 1000 ? result ! (
+      let newResult: Float = noinline_f0(v0, v1, v2, v3) in
+      loop(i + 1, v0, v1, v2, v3, newResult)
+    )
+  } in
+  let main: () -> Float = () -> Float {
+    let v0: s9 = s9(s3([[s2(s1(s0([[0.0]], [[1.0], [2.0]]), s0([[3.0]], [[4.0], [5.0]])), s0([[6.0]], [[7.0], [8.0]]))], [s2(s1(s0([[9.0]], [[10.0], [11.0]]), s0([[12.0]], [[13.0], [14.0]])), s0([[15.0]], [[16.0], [17.0]]))], [s2(s1(s0([[18.0]], [[19.0], [20.0]]), s0([[21.0]], [[22.0], [23.0]])), s0([[24.0]], [[25.0], [26.0]]))]], s1(s0([[27.0]], [[28.0], [29.0]]), s0([[30.0]], [[31.0], [32.0]]))), s0([[33.0]], [[34.0], [35.0]])) in
+    let v1: [s1] = [s1(s0([[36.0]], [[37.0], [38.0]]), s0([[39.0]], [[40.0], [41.0]])), s1(s0([[42.0]], [[43.0], [44.0]]), s0([[45.0]], [[46.0], [47.0]])), s1(s0([[48.0]], [[49.0], [50.0]]), s0([[51.0]], [[52.0], [53.0]]))] in
+    let v2: [s0] = [s0([[54.0]], [[55.0], [56.0]]), s0([[57.0]], [[58.0], [59.0]])] in
+    let v3: Float = 60.0 in
+    let initialResult: Float = 60.0 in
+    let start: Float = uptime() in
+    let result: Float = loop(0, v0, v1, v2, v3, initialResult) in
+    let end: Float = uptime() in
+    end - start
+  } in
+main()

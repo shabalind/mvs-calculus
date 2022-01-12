@@ -1,0 +1,86 @@
+  struct s0 {
+    var p0: [[Float]]
+    var p1: [[Float]]
+  } in
+  struct s1 {
+    var p0: s0
+    var p1: s0
+  } in
+  struct s2 {
+    var p0: s1
+    var p1: s0
+  } in
+  let noinline_f0: (s2, Float) -> Float = (v0: s2, v1: Float) -> Float {
+    var v5: s2 = v0 in
+    let v3: s0 = v5.p1 in
+    v5.p1 = v3 in
+    var v6: Float = v1 in
+    var v8: s2 = v5 in
+    var v2: s2 = v0 in
+    var v13: s0 = v3 in
+    v8.p1 = v3 in
+    var v10: s0 = v3 in
+    var v9: s2 = v5 in
+    var v18: s2 = v9 in
+    var v12: s0 = v10 in
+    let v11: s1 = v8.p0 in
+    let v16: [[Float]] = v10.p1 in
+    v18.p1 = v10 in
+    let v15: [Float] = v16[1] in
+    let v25: Float = v15[0] in
+    v8.p1 = v13 in
+    let v24: [Float] = v16[1] in
+    v8.p1 = v13 in
+    let v22: Float = v25 / v1 in
+    var v19: Float = v22 in
+    v5.p1 = v10 in
+    let v29: Float = v1 / v19 in
+    v8.p0 = v11 in
+    let v23: [s1] = [v11, v11, v11, v11] in
+    let v17: s0 = v11.p1 in
+    v5.p1 = v13 in
+    v10 = v17 in
+    let v48: [[Float]] = v17.p0 in
+    let v59: s1 = s1(v10, v12) in
+    v18.p0 = v59 in
+    v2.p0 = v11 in
+    let v33: Float = v19 / v6 in
+    var v43: Float = v29 in
+    let v51: s1 = v2.p0 in
+    var v38: [[Float]] = v48 in
+    let v30: [Float] = v48[2] in
+    v38[0] = v30 in
+    v38[1] = v15 in
+    v38[0] = v24 in
+    v38[0] = v24 in
+    var v50: [[Float]] = v48 in
+    let v67: s1 = v8.p0 in
+    let v35: [[[Float]]] = [v38, v50, v48, v48, v48, v50, v50] in
+    var v54: [s1] = v23 in
+    let v95: s1 = v54[2] in
+    let v98: [[Float]] = v35[0] in
+    v43 = v33 in
+    v8 = v18 in
+    v5.p0 = v95 in
+    v8.p1 = v10 in
+    v12.p0 = v98 in
+    v54[2] = v67 in
+    v54[1] = v51 in
+    v43
+  } in
+  fun loop(i: Int, v0: s2, v1: Float, result: Float) -> Float {
+    if i >= 1000 ? result ! (
+      let newResult: Float = noinline_f0(v0, v1) in
+      loop(i + 1, v0, v1, newResult)
+    )
+  } in
+  let main: () -> Float = () -> Float {
+    let v0: s2 = s2(s1(s0([[0.0], [1.0], [2.0]], [[3.0], [4.0]]), s0([[5.0], [6.0], [7.0]], [[8.0], [9.0]])), s0([[10.0], [11.0], [12.0]], [[13.0], [14.0]])) in
+    let v1: Float = 15.0 in
+    let initialResult: Float = 15.0 in
+    let start: Float = uptime() in
+    let result: Float = loop(0, v0, v1, initialResult) in
+    let end: Float = uptime() in
+    end - start
+  } in
+main()

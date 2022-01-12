@@ -1,0 +1,233 @@
+  #include <vector>
+  #include <iostream>
+  #include <chrono>
+  std::vector<std::vector<double>> f25(const std::vector<std::vector<double>> &v0, const std::vector<std::vector<double>> &v1) {
+    std::vector<std::vector<double>> v4 = v1;
+    std::vector<std::vector<double>> v2 = v1;
+    const std::vector<double> v3 = v1[1];
+    std::vector<std::vector<double>> v5 = v2;
+    v4[1] = v3;
+    v5[1] = v3;
+    v5[0] = v3;
+    v5[1] = v3;
+    v4[0] = v3;
+    std::vector<double> v6 = v3;
+    v2[1] = v3;
+    v5[0] = v6;
+    std::vector<double> v9 = v6;
+    const double v7 = v3[0];
+    v9[0] = v7;
+    v2[0] = v6;
+    v5[1] = v6;
+    v5 = v4;
+    const double v16 = v6[0];
+    std::vector<std::vector<double>> v13 = v5;
+    const std::vector<double> v22 = v13[0];
+    v5[1] = v9;
+    v4[1] = v22;
+    const double v24 = v9[0];
+    const std::vector<double> v37 = v1[1];
+    v2[1] = v3;
+    v2[0] = v22;
+    const std::vector<std::vector<double>> v28 { v22, v6, v6, v3 };
+    v4[0] = v6;
+    v9[0] = v16;
+    v4[1] = v37;
+    v9[0] = v24;
+    v13[0] = v6;
+    const std::vector<double> v52 = v28[2];
+    v5[1] = v22;
+    const std::vector<std::vector<std::vector<double>>> v41 { v13, v0 };
+    v2[1] = v52;
+    std::vector<std::vector<std::vector<double>>> v81 = v41;
+    std::vector<std::vector<std::vector<double>>> v186 = v81;
+    v186[0] = v0;
+    const std::vector<std::vector<double>> v115 = v186[1];
+    return v115;
+  }
+  std::vector<std::vector<double>> f17(const std::vector<std::vector<double>> &v0) {
+    const std::vector<std::vector<double>> v5 = f25(v0, v0);
+    std::vector<std::vector<double>> v9 = v0;
+    const std::vector<std::vector<double>> v1 = f25(v5, v5);
+    const std::vector<std::vector<double>> v14 = f25(v1, v9);
+    const std::vector<std::vector<double>> v16 = f25(v14, v5);
+    return v16;
+  }
+  std::vector<std::vector<double>> f16(const std::vector<std::vector<double>> &v0) {
+    std::vector<std::vector<double>> v5 = v0;
+    const std::vector<std::vector<double>> v1 = f25(v5, v0);
+    const std::vector<double> v6 = v0[0];
+    std::vector<double> v4 = v6;
+    std::vector<double> v3 = v6;
+    std::vector<std::vector<double>> v13 = v1;
+    v5[1] = v4;
+    const std::vector<std::vector<double>> v22 = f25(v5, v13);
+    const std::vector<std::vector<double>> v31 = f17(v22);
+    v5[0] = v3;
+    v5[0] = v6;
+    return v31;
+  }
+  std::vector<std::vector<double>> f15(const std::vector<std::vector<double>> &v0, const std::vector<std::vector<double>> &v1) {
+    const std::vector<std::vector<double>> v3 = f25(v0, v1);
+    std::vector<std::vector<double>> v2 = v0;
+    v2 = v3;
+    const std::vector<double> v5 = v2[1];
+    v2[1] = v5;
+    const std::vector<std::vector<double>> v8 = f17(v2);
+    const double v11 = v5[0];
+    v2[1] = v5;
+    std::vector<double> v21 = v5;
+    v21[0] = v11;
+    v2[0] = v21;
+    const std::vector<std::vector<double>> v32 = f17(v8);
+    std::vector<std::vector<double>> v28 = v32;
+    v28[1] = v21;
+    return v28;
+  }
+  double f14(const double &v0) {
+    double v3 = v0;
+    double v7 = v0;
+    double v6 = v7;
+    double v4 = v0;
+    double v2 = v7;
+    double v11 = v4;
+    double v5 = v7;
+    double v1 = v11;
+    double v9 = v5;
+    const double v8 = v5 / v9;
+    v3 = v9;
+    double v10 = v9;
+    const double v13 = v1 / v10;
+    double v20 = v10;
+    const std::vector<double> v30 { v6, v9, v8 };
+    const double v19 = v30[2];
+    std::vector<double> v17 = v30;
+    const double v14 = v17[2];
+    const double v12 = v2 / v13;
+    const double v26 = v30[0];
+    std::vector<double> v24 = v17;
+    std::vector<double> v27 = v30;
+    const double v22 = v14 + v19;
+    std::vector<double> v29 = v30;
+    v29 = v27;
+    const double v52 = v29[0];
+    double v31 = v10;
+    v27[1] = v14;
+    std::vector<double> v33 = v30;
+    const std::vector<double> v43 { v0, v31, v22, v20, v13 };
+    v24[2] = v9;
+    double v44 = v12;
+    std::vector<double> v45 = v43;
+    v29[2] = v44;
+    v11 = v22;
+    std::vector<double> v54 = v24;
+    const double v64 = v54[0];
+    std::vector<double> v51 = v45;
+    const std::vector<double> v28 { v3, v64, v52, v64 };
+    v45 = v51;
+    const double v32 = v51[4];
+    const double v60 = v28[2];
+    const std::vector<double> v57 { v10, v1, v32, v4, v52, v13, v26 };
+    v45 = v43;
+    std::vector<double> v79 = v28;
+    std::vector<double> v100 = v79;
+    const double v85 = v28[0];
+    const double v94 = v100[1];
+    std::vector<double> v56 = v57;
+    std::vector<double> v55 = v56;
+    v51[4] = v85;
+    std::vector<double> v116 = v100;
+    std::vector<double> v103 = v116;
+    v54 = v33;
+    v29[0] = v10;
+    const double v130 = v55[3];
+    v116[0] = v130;
+    const double v174 = v103[0];
+    v27[2] = v174;
+    const double v155 = v57[2];
+    double v72 = v94;
+    const double v148 = v155 - v60;
+    v33[2] = v72;
+    return v148;
+  }
+  std::vector<std::vector<double>> f8(const std::vector<std::vector<double>> &v0, const std::vector<std::vector<double>> &v1) {
+    const std::vector<double> v6 = v1[1];
+    std::vector<double> v3 = v6;
+    const double v7 = v6[0];
+    const std::vector<double> v2 = v1[1];
+    const std::vector<std::vector<double>> v5 = f15(v0, v1);
+    const double v14 = v3[0];
+    const std::vector<std::vector<double>> v12 = f16(v1);
+    std::vector<double> v8 = v2;
+    const double v9 = f14(v7);
+    std::vector<std::vector<double>> v10 = v12;
+    const std::vector<std::vector<std::vector<double>>> v29 { v5, v0, v5, v10, v12 };
+    std::vector<std::vector<std::vector<double>>> v13 = v29;
+    double v15 = v14;
+    v3[0] = v9;
+    std::vector<double> v24 = v8;
+    v3[0] = v7;
+    double v36 = v9;
+    const std::vector<double> v25 { v7, v36, v36, v15, v9 };
+    const double v22 = v25[3];
+    std::vector<double> v35 = v25;
+    std::vector<std::vector<double>> v21 = v0;
+    const std::vector<std::vector<double>> v37 = v13[2];
+    const std::vector<double> v39 = v21[1];
+    v21[1] = v2;
+    const std::vector<std::vector<std::vector<double>>> v30 { v12, v12, v37 };
+    const std::vector<std::vector<std::vector<std::vector<double>>>> v56 { v30, v30, v30, v30, v30, v30 };
+    std::vector<std::vector<std::vector<std::vector<double>>>> v84 = v56;
+    const double v121 = v25[0];
+    const double v75 = v35[3];
+    const std::vector<std::vector<double>> v130 = v30[1];
+    std::vector<std::vector<std::vector<std::vector<double>>>> v68 = v84;
+    v8[0] = v22;
+    std::vector<std::vector<std::vector<std::vector<double>>>> v212 = v68;
+    v10[0] = v39;
+    std::vector<std::vector<double>> v146 = v130;
+    std::vector<std::vector<std::vector<std::vector<double>>>> v74 = v212;
+    const std::vector<std::vector<std::vector<double>>> v383 = v74[5];
+    v8[0] = v75;
+    v10 = v146;
+    v10[0] = v24;
+    v35[1] = v121;
+    const std::vector<std::vector<double>> v190 = v383[1];
+    return v190;
+  }
+  __attribute__((noinline))
+  double f0(const std::vector<std::vector<double>> &v0, const double &v1) {
+    const std::vector<std::vector<double>> v2 = f8(v0, v0);
+    const std::vector<double> v4 = v2[1];
+    const std::vector<std::vector<double>> v8 = f16(v2);
+    std::vector<std::vector<double>> v5 = v2;
+    const std::vector<double> v29 = v5[1];
+    const double v25 = f14(v1);
+    const std::vector<double> v11 = v8[1];
+    double v10 = v25;
+    const double v40 = f14(v10);
+    const double v35 = v4[0];
+    v5[1] = v4;
+    std::vector<double> v65 = v29;
+    const double v36 = v65[0];
+    v65 = v11;
+    const std::vector<double> v244 { v35, v40, v36, v1 };
+    std::vector<double> v90 = v244;
+    const double v209 = v90[1];
+    return v209;
+  }
+  int main() {
+    std::vector<std::vector<double>> v0({ { 0.0 }, { 1.0 } });
+    double v1(2.0);
+    auto start = std::chrono::high_resolution_clock::now();
+    double result;
+    for (int i = 0; i < 1000; i ++) {
+      result = f0(v0, v1);
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    double value = *((double*) &result);
+    std::cout << value << "\n";
+    std::cout << std::chrono::duration_cast<std::chrono::nanoseconds>(end-start).count();
+    std::cout << "\n";
+    return 0;
+  }

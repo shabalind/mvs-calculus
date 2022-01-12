@@ -1,0 +1,31 @@
+  let noinline_f0: ([[Float]], [[Float]], [[Float]], Float) -> Float = (v0: [[Float]], v1: [[Float]], v2: [[Float]], v3: Float) -> Float {
+    let v4: [Float] = v2[2] in
+    let v19: Float = v4[0] in
+    var v34: Float = v19 in
+    let v50: Float = v19 * v19 in
+    let v92: [Float] = [v50, v50, v34, v3, v3] in
+    let v84: Float = v92[1] in
+    var v132: [Float] = v92 in
+    v132[3] = v84 in
+    var v347: [Float] = v132 in
+    let v441: Float = v347[1] in
+    v441
+  } in
+  fun loop(i: Int, v0: [[Float]], v1: [[Float]], v2: [[Float]], v3: Float, result: Float) -> Float {
+    if i >= 1000 ? result ! (
+      let newResult: Float = noinline_f0(v0, v1, v2, v3) in
+      loop(i + 1, v0, v1, v2, v3, newResult)
+    )
+  } in
+  let main: () -> Float = () -> Float {
+    let v0: [[Float]] = [[0.0]] in
+    let v1: [[Float]] = [[1.0], [2.0]] in
+    let v2: [[Float]] = [[3.0], [4.0], [5.0]] in
+    let v3: Float = 6.0 in
+    let initialResult: Float = 6.0 in
+    let start: Float = uptime() in
+    let result: Float = loop(0, v0, v1, v2, v3, initialResult) in
+    let end: Float = uptime() in
+    end - start
+  } in
+main()

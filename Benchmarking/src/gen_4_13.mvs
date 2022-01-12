@@ -1,0 +1,42 @@
+  struct s0 {
+    var p0: [[Float]]
+  } in
+  struct s1 {
+    var p0: [s0]
+    var p1: s0
+    var p2: [[s0]]
+  } in
+  struct s3 {
+    var p0: s0
+    var p1: s1
+  } in
+  let noinline_f0: ([s3], Float) -> Float = (v0: [s3], v1: Float) -> Float {
+    var v4: Float = v1 in
+    var v23: Float = v1 in
+    let v20: Float = v4 / v23 in
+    let v81: Float = v4 + v23 in
+    var v47: Float = v81 in
+    var v77: Float = v4 in
+    var v62: Float = v77 in
+    let v78: [Float] = [v23, v23, v62, v20, v1, v77, v47] in
+    let v150: [[Float]] = [v78, v78, v78, v78, v78, v78, v78] in
+    let v142: [Float] = v150[5] in
+    let v163: Float = v142[0] in
+    v163
+  } in
+  fun loop(i: Int, v0: [s3], v1: Float, result: Float) -> Float {
+    if i >= 1000 ? result ! (
+      let newResult: Float = noinline_f0(v0, v1) in
+      loop(i + 1, v0, v1, newResult)
+    )
+  } in
+  let main: () -> Float = () -> Float {
+    let v0: [s3] = [s3(s0([[0.0], [1.0]]), s1([s0([[2.0], [3.0]]), s0([[4.0], [5.0]]), s0([[6.0], [7.0]])], s0([[8.0], [9.0]]), [[s0([[10.0], [11.0]])], [s0([[12.0], [13.0]])]])), s3(s0([[14.0], [15.0]]), s1([s0([[16.0], [17.0]]), s0([[18.0], [19.0]]), s0([[20.0], [21.0]])], s0([[22.0], [23.0]]), [[s0([[24.0], [25.0]])], [s0([[26.0], [27.0]])]])), s3(s0([[28.0], [29.0]]), s1([s0([[30.0], [31.0]]), s0([[32.0], [33.0]]), s0([[34.0], [35.0]])], s0([[36.0], [37.0]]), [[s0([[38.0], [39.0]])], [s0([[40.0], [41.0]])]]))] in
+    let v1: Float = 42.0 in
+    let initialResult: Float = 42.0 in
+    let start: Float = uptime() in
+    let result: Float = loop(0, v0, v1, initialResult) in
+    let end: Float = uptime() in
+    end - start
+  } in
+main()

@@ -1,0 +1,1 @@
+{"op_count": {"BinaryInst": 6, "VarInst": 22, "CallInst": 1, "AssignInst": 4, "NewArrayInst": 2, "ArrayGetInst": 17, "ArraySetInst": 22, "ReturnInst": 2}, "total_count": 76}

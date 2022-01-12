@@ -1,0 +1,1 @@
+{"op_count": {"BinaryInst": 4, "CallInst": 2, "VarInst": 26, "AssignInst": 5, "ReturnInst": 3}, "total_count": 40}

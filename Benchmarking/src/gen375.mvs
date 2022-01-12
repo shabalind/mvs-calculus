@@ -1,0 +1,141 @@
+  struct s0 {
+    var p0: [[Float]]
+    var p1: [[Float]]
+  } in
+  struct s1 {
+    var p0: Float
+    var p1: s0
+  } in
+  struct s4 {
+    var p0: s0
+    var p1: [[s1]]
+  } in
+  struct s5 {
+    var p0: s4
+    var p1: [s1]
+  } in
+  struct s6 {
+    var p0: s0
+    var p1: s5
+  } in
+  let f57: (Float) -> Float = (v0: Float) -> Float {
+    var v7: Float = v0 in
+    var v6: Float = v7 in
+    var v4: Float = v7 in
+    var v5: Float = v0 in
+    v5 = v0 in
+    var v10: Float = v0 in
+    let v13: [Float] = [v7, v0, v10, v5] in
+    let v8: Float = v5 + v4 in
+    let v9: Float = v13[0] in
+    let v20: Float = v13[0] in
+    var v29: [Float] = v13 in
+    let v17: [Float] = [v10] in
+    var v30: [Float] = v17 in
+    let v15: Float = v29[2] in
+    var v21: [Float] = v29 in
+    v30[0] = v6 in
+    let v27: Float = v13[1] in
+    var v37: Float = v9 in
+    v30[0] = v8 in
+    var v39: [Float] = v29 in
+    let v45: Float = v21[0] in
+    var v35: Float = v0 in
+    v21[0] = v6 in
+    let v46: Float = v39[0] in
+    var v61: [Float] = v13 in
+    var v26: [Float] = v13 in
+    let v40: Float = v13[2] in
+    var v36: [Float] = v39 in
+    v26[0] = v37 in
+    let v87: Float = v30[0] in
+    var v73: [Float] = v29 in
+    let v56: Float = v40 - v87 in
+    v29[0] = v37 in
+    let v72: [[Float]] = [v61, v29, v26, v39, v13, v73] in
+    let v104: [[Float]] = [v36] in
+    var v147: [[Float]] = v72 in
+    var v55: [[Float]] = v104 in
+    v73[0] = v37 in
+    let v161: [Float] = v147[1] in
+    let v43: Float = v36[1] in
+    var v112: [[Float]] = v72 in
+    var v81: [[Float]] = v55 in
+    v36[0] = v43 in
+    v81[0] = v13 in
+    let v75: [Float] = v112[3] in
+    let v70: [Float] = v72[5] in
+    var v126: Float = v15 in
+    v36[1] = v126 in
+    v26[0] = v56 in
+    v147[0] = v70 in
+    let v169: [Float] = v72[1] in
+    let v106: [Float] = v81[0] in
+    v81[0] = v169 in
+    var v145: [Float] = v106 in
+    let v230: Float = v145[3] in
+    v30[0] = v46 in
+    v147[0] = v75 in
+    v21[3] = v35 in
+    v81[0] = v161 in
+    v55[0] = v61 in
+    v36[0] = v27 in
+    v21[2] = v20 in
+    v39[0] = v45 in
+    v36[1] = v7 in
+    v230
+  } in
+  let f3: (Float) -> Float = (v0: Float) -> Float {
+    var v1: Float = v0 in
+    v1 = v0 in
+    var v6: Float = v1 in
+    let v5: Float = f57(v1) in
+    var v4: Float = v0 in
+    let v7: Float = f57(v5) in
+    let v10: Float = f57(v7) in
+    let v8: Float = v0 + v5 in
+    let v15: Float = v7 / v0 in
+    let v9: Float = f57(v7) in
+    var v11: Float = v7 in
+    let v3: Float = f57(v15) in
+    var v19: Float = v15 in
+    var v14: Float = v4 in
+    let v21: [Float] = [v6, v6, v6, v3, v9, v0, v14] in
+    var v16: [Float] = v21 in
+    v16[6] = v11 in
+    var v29: Float = v19 in
+    v16[6] = v29 in
+    v16[6] = v8 in
+    v1 = v14 in
+    v16[5] = v10 in
+    let v32: Float = v16[4] in
+    v32
+  } in
+  let noinline_f0: ([s4], [s6], Float) -> Float = (v0: [s4], v1: [s6], v2: Float) -> Float {
+    let v5: s6 = v1[2] in
+    let v10: s0 = v5.p0 in
+    let v4: [[Float]] = v10.p0 in
+    let v9: [Float] = v4[0] in
+    let v14: Float = v9[0] in
+    var v27: Float = v2 in
+    let v57: Float = f3(v27) in
+    v27 = v14 in
+    v57
+  } in
+  fun loop(i: Int, v0: [s4], v1: [s6], v2: Float, result: Float) -> Float {
+    if i >= 1000 ? result ! (
+      let newResult: Float = noinline_f0(v0, v1, v2) in
+      loop(i + 1, v0, v1, v2, newResult)
+    )
+  } in
+  let main: () -> Float = () -> Float {
+    let v0: [s4] = [s4(s0([[0.0]], [[1.0], [2.0]]), [[s1(3.0, s0([[4.0]], [[5.0], [6.0]]))]])] in
+    let v1: [s6] = [s6(s0([[7.0]], [[8.0], [9.0]]), s5(s4(s0([[10.0]], [[11.0], [12.0]]), [[s1(13.0, s0([[14.0]], [[15.0], [16.0]]))]]), [s1(17.0, s0([[18.0]], [[19.0], [20.0]])), s1(21.0, s0([[22.0]], [[23.0], [24.0]])), s1(25.0, s0([[26.0]], [[27.0], [28.0]]))])), s6(s0([[29.0]], [[30.0], [31.0]]), s5(s4(s0([[32.0]], [[33.0], [34.0]]), [[s1(35.0, s0([[36.0]], [[37.0], [38.0]]))]]), [s1(39.0, s0([[40.0]], [[41.0], [42.0]])), s1(43.0, s0([[44.0]], [[45.0], [46.0]])), s1(47.0, s0([[48.0]], [[49.0], [50.0]]))])), s6(s0([[51.0]], [[52.0], [53.0]]), s5(s4(s0([[54.0]], [[55.0], [56.0]]), [[s1(57.0, s0([[58.0]], [[59.0], [60.0]]))]]), [s1(61.0, s0([[62.0]], [[63.0], [64.0]])), s1(65.0, s0([[66.0]], [[67.0], [68.0]])), s1(69.0, s0([[70.0]], [[71.0], [72.0]]))]))] in
+    let v2: Float = 73.0 in
+    let initialResult: Float = 73.0 in
+    let start: Float = uptime() in
+    let result: Float = loop(0, v0, v1, v2, initialResult) in
+    let end: Float = uptime() in
+    end - start
+  } in
+main()

@@ -1,0 +1,1 @@
+{"op_count": {"ArrayGetInst": 142, "StructGetInst": 225, "CallInst": 45, "VarInst": 127, "StructSetInst": 243, "NewStructInst": 22, "AssignInst": 35, "ReturnInst": 46, "ArraySetInst": 85, "NewArrayInst": 21}, "total_count": 991}
